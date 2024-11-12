@@ -6,10 +6,8 @@ class Asiento:
         
     def cambiarColor(self, color):
         colorespermitidos = ["rojo", "verde", "azul", "amarillo", "negro", "blanco"]
-        for i in colorespermitidos:
-            if color in colorespermitidos:
-                self.color = color
-            break
+        if color in colorespermitidos:
+            self.color = color
 
 class Motor:
     def __init__ (self, numeroCilindros, tipo, registro):
@@ -36,13 +34,15 @@ class Auto:
         self.motor = motor
         self.registro = registro
 
-    def cantidadAsientos(self, asientos):
-      
+    def cantidadAsientos(self):
+        return len(self.asientos)
 
 
-    def verificarIntegridad(self, registro):
-        
-
-
-
-       
+    def verificarIntegridad(self):
+        registroAuto= self.registro
+        for i in self.asientos:
+            if i.registro != registroAuto:
+                return "Las piezas no son originales"
+        if self.motor.registro != registroAuto:
+            return "Las piezas no son originales"
+        return "Auto original"
